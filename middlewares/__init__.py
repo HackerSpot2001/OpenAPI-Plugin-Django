@@ -49,7 +49,7 @@ class OpenAPIMiddleWare:
 
     def __call__(self, request : HttpRequest ,*args,**kwargs):
         response = self.get_response(request)
-        with open(settings.OPENAPI_SPECS_PATH , 'r') as f:
+        with open(settings.APISPEC_FILE , 'r') as f:
             self.api_spec = safe_load(f)
 
 
@@ -82,6 +82,7 @@ class OpenAPIMiddleWare:
         if((str(request.method).lower() == 'options') ):
             response = JsonResponse(SuccessResp,safe=False)
             response.status_code = 200
+
 
         if (response.status_code == 404) :
             NotFoundResp = ErrorResp
