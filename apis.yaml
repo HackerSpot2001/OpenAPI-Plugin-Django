@@ -1,0 +1,604 @@
+openapi: "3.0.0"
+
+info:
+  title: Applicant-Tracking-System
+  version: 1.0.0
+  description: This is a Applicant-Tracking-System APIs documentation
+  # termsOfService: http://example.com/terms/
+  # contact:
+  #   email: support@example.com
+  # license:
+  #   name: MIT
+  #   url: http://example.com/license
+
+servers:
+  - url: http://127.0.0.1:8000
+    description: Development server
+  - url: https://api.example.com
+    description: Production server
+
+tags:
+  - name: users
+    description: Users
+
+paths:
+  /users/create_user:
+    post:
+      tags:
+        - users
+
+      summary: this endpoint will help to create user.
+      operationId: createUser
+      # "x-python-to": "Users.views#create_user"
+      description: this endpoint will help to create user
+
+      requestBody:
+        description: "The request body is a multipart form-data containing new user information."
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                salutation:
+                  type: string
+                  description: Salutation of the user.
+                  enum:
+                    - MR
+                    - MRS
+
+                username:
+                  type: string
+                  description: Username of the user.
+                  example: random.guy_2001
+
+                first_name:
+                  type: string
+                  required: true
+                  description: First name of the user.
+                  example: Random
+
+                middle_name:
+                  type: string
+                  description: Middle name of the user.
+                  example: Kumar
+
+                last_name:
+                  type: string
+                  description: Last name of the user.
+                  example: Guy
+
+                email:
+                  type: string
+                  required: true
+                  description: Email-ID of the user.
+                  example: random.guy@gmail.com
+
+                gender:
+                  type: string
+                  description: Gender of the user.
+                  enum:
+                    - MALE
+                    - FEMALE
+
+                marital_status:
+                  type: string
+                  description: Marital Status of the user.
+                  enum:
+                    - SINGLE
+                    - MARRIED
+                    - DIVORCED
+
+                dob:
+                  type: string
+                  description: Date Of Birth of the user.
+                  example: "2001-10-12"
+
+                deceased_date:
+                  type: string
+                  description: Deceased date of the user.
+                  example: "2001-10-12"
+
+                bio:
+                  type: string
+                  description: About the of the user.
+                  example: Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                  
+                marrige_date:
+                  type: string
+                  description: marrige date of the user.
+                  example: '2001-10-12'
+
+                phone:
+                  type: string
+                  description: phone number of the user.
+                  example: '8719228020'
+
+                whastapp:
+                  type: string
+                  description: whastapp number of the user.
+                  example: '8719228020'
+
+
+      responses:
+        200:
+          description: "Update Attachment Result"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiresponse:
+                    $ref: "#/components/schemas/ApiResponse"
+        400:
+          description: invalid input, object invalid
+
+
+  /users/update_user:
+    post:
+      tags:
+        - users
+
+      summary: this endpoint will help to update the user.
+      operationId: updateUser
+      # "x-python-to": "Users.views#create_user"
+      description: this endpoint will help to update the user
+
+      requestBody:
+        description: "The request body is a multipart form-data."
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                salutation:
+                  type: string
+                  description: Salutation of the user.
+                  enum:
+                    - MR
+                    - MRS
+
+                username:
+                  type: string
+                  description: Username of the user.
+                  example: random.guy_2001
+
+                first_name:
+                  type: string
+                  required: true
+                  description: First name of the user.
+                  example: Random
+
+                middle_name:
+                  type: string
+                  description: Middle name of the user.
+                  example: Kumar
+
+                last_name:
+                  type: string
+                  description: Last name of the user.
+                  example: Guy
+
+                email:
+                  type: string
+                  required: true
+                  description: Email-ID of the user.
+                  example: random.guy@gmail.com
+
+                gender:
+                  type: string
+                  description: Gender of the user.
+                  enum:
+                    - MALE
+                    - FEMALE
+
+                marital_status:
+                  type: string
+                  description: Marital Status of the user.
+                  enum:
+                    - SINGLE
+                    - MARRIED
+                    - DIVORCED
+
+                dob:
+                  type: string
+                  description: Date Of Birth of the user.
+                  example: "2001-10-12"
+
+                deceased_date:
+                  type: string
+                  description: Deceased date of the user.
+                  example: "2001-10-12"
+
+                bio:
+                  type: string
+                  description: About the of the user.
+                  example: Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                  
+                marrige_date:
+                  type: string
+                  description: marrige date of the user.
+                  example: '2001-10-12'
+
+                phone:
+                  type: string
+                  description: phone number of the user.
+                  example: '8719228020'
+
+                whastapp:
+                  type: string
+                  description: whastapp number of the user.
+                  example: '8719228020'
+
+
+      responses:
+        200:
+          description: "Update Attachment Result"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiresponse:
+                    $ref: "#/components/schemas/ApiResponse"
+        400:
+          description: invalid input, object invalid
+
+
+  /users/update_profile_pic:
+    post:
+      tags:
+        - users
+
+      summary: this endpoint will help you to set your profile pic.
+      operationId: updateUserProfilePic
+      # "x-python-to": "Users.views#create_user"
+      description: this endpoint will help to update the user
+
+      requestBody:
+        description: "The request body is a multipart form-data."
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                profile_pic:
+                  type: file
+                  description: Profile pic of the user.
+
+      responses:
+        200:
+          description: "Update Attachment Result"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiresponse:
+                    $ref: "#/components/schemas/ApiResponse"
+        400:
+          description: invalid input, object invalid
+
+
+  /users/create_party_group:
+    post:
+      tags:
+        - users
+
+      summary: this endpoint will help you to create party_group.
+      operationId: createPartygroup
+      # "x-python-to": "Users.views#create_user"
+      description: this endpoint will help you to create party_group.
+
+      requestBody:
+        description: "The request body is a multipart form-data."
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                group_name:
+                  type: string
+                  description: company name/ entity name.
+                  example: Your Company name
+
+                company_email:
+                  type: string
+                  description: email id of the entity.
+                  example: hr.company@mail.com
+
+                company_phone:
+                  type: string
+                  description: phone number of the entity.
+                  example: 9011920110
+
+                company_logo:
+                  type: file
+                  description: logo of the entity.
+
+      responses:
+        200:
+          description: "Update Attachment Result"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiresponse:
+                    $ref: "#/components/schemas/ApiResponse"
+        400:
+          description: invalid input, object invalid
+
+
+  /users/profile:
+    get:
+      tags:
+        - users
+      summary: this endpoint checks if requestor is loggedin in the system or not.
+      operationId: getProfile
+      # "x-python-to": "Users.views#get_profile"
+      description: On successful authentication the system should tag the user with a cookie so that on subsequent request we are able to determine who the user is. This endpoint checks that only. If the user is authenticated userlogin will be populated and ```apiresponse.code``` will be ```LOGGEDIN``` else userlogin will be null and ```apiresponse.code``` will be ```LOGGEDOUT```
+
+      responses:
+        200:
+          description: "Profile Result"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiresponse:
+                    $ref: "#/components/schemas/ApiResponse"
+        400:
+          description: invalid input, object invalid
+
+
+  /users/logoff:
+    get:
+      tags:
+        - users
+      summary: this endpoint helps to logout the user.
+      operationId: logOutUser
+      # "x-python-to": "Users.views#get_profile"
+      description: this endpoint helps to logout the user.
+
+      responses:
+        200:
+          description: "Profile Result"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiresponse:
+                    $ref: "#/components/schemas/ApiResponse"
+        400:
+          description: invalid input, object invalid
+
+
+  /users/login_user:
+    post:
+      tags:
+        - users
+      summary: this endpoint checks the credentials of a staff
+      operationId: loginUser
+      # "x-python-to": "Users.views#login_user"
+      description: This operation checks mobile number and password combination.
+
+      requestBody:
+        description: "All login related information as below"
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: "random.guy_2001"
+                  minLength: 4
+
+                password:
+                  type: string
+                  example: "123@45"
+                  format: password
+
+              required:
+                - username
+                - password
+
+
+      responses:
+        200:
+          description: "Authentication Result"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiresponse:
+                    $ref: "#/components/schemas/ApiResponse"
+        400:
+          description: invalid input, object invalid
+
+
+  /users/activate/{user_login_id}/{uaid}:
+    get:
+      tags:
+        - users
+      summary: this endpoint checks and activate user.
+      operationId: activateAcc
+      # "x-python-to": "Users.views#activate_acc"
+      description: this endpoint checks and activate user
+      parameters:
+        - name: user_login_id
+          in: path
+          required: true
+          description: User-Login Id Of the User.
+          example: UL_Q5WMKR0WY1BZA25NKQJJ
+          schema:
+            type: string
+
+        - name: uaid
+          in: path
+          required: true
+          example: 7e25841b3537b2da808a8625420fadd7
+          description: User-activateion Id Of the User.
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: "Profile Result"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiresponse:
+                    $ref: "#/components/schemas/ApiResponse"
+        400:
+          description: invalid input, object invalid
+
+
+  /users/forgot_password:
+    get:
+      tags:
+        - users
+      summary: this endpoint is for helping user in forgotPassword.
+      operationId: forgotPassword
+      # "x-python-to": "Users.views#activate_acc"
+      description: this endpoint is for helping user in forgotPassword
+      parameters:
+        - name: username
+          in: query
+          required: true
+          description: Username Of the User.
+          example: random.guy
+          schema:
+            type: string
+
+
+      responses:
+        200:
+          description: "Profile Result"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiresponse:
+                    $ref: "#/components/schemas/ApiResponse"
+        400:
+          description: invalid input, object invalid
+
+
+  /users/change_password:
+    get:
+      tags:
+        - users
+      summary: this endpoint is for helping user in changePassword.
+      operationId: changePassword
+      # "x-python-to": "Users.views#activate_acc"
+      description: this endpoint is for helping user in changePassword
+      parameters:
+        - name: current_password
+          in: query
+          required: true
+          description: current password Of the User.
+          schema:
+            format: password
+            type: string
+
+        - name: new_password
+          in: query
+          required: true
+          description: new password Of the User.
+          schema:
+            format: password
+            type: string
+
+        - name: repeat_password
+          in: query
+          required: true
+          description: repeat your new password Of the User.
+          schema:
+            format: password
+            type: string
+
+
+      responses:
+        200:
+          description: "Profile Result"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiresponse:
+                    $ref: "#/components/schemas/ApiResponse"
+        400:
+          description: invalid input, object invalid
+
+
+  /users/remove:
+    get:
+      tags:
+        - users
+      summary: this endpoint wll remove Account of the logged-in user
+      operationId: removeAccount
+      # "x-python-to": "Users.views#activate_acc"
+      description: this endpoint wll remove Account of the logged-in user
+
+
+      responses:
+        200:
+          description: "Profile Result"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiresponse:
+                    $ref: "#/components/schemas/ApiResponse"
+        400:
+          description: invalid input, object invalid
+
+
+
+components:
+  schemas:
+    ApiResponse:
+      type: object
+      required:
+        - code
+        - type
+        - severity
+        - message
+      properties:
+        code:
+          description: A code for this response. This code shall be referred in the documentation / error glossary.
+          type: string
+          example: USER_001
+        type:
+          description: The type of this response.
+          type: string
+          example: "OK, ERROR, SYSTEM_ERROR"
+          enum:
+            - OK
+            - ERROR
+            - SYSTEM_ERROR
+        severity:
+          description: The nature of the message with respect to the attention it deserves from the end user via UI/UX. eg INFO would mean a positive or expected response to the user. WARN would mean that something awkward happened and user needs to be told and acknowledgement taken.
+          type: string
+          enum:
+            - DEBUG
+            - INFO
+            - WARN
+            - ERROR
+        message:
+          description: A user firendly message that the end user can be communicated. The end user is expected to understand this message.
+          type: string
